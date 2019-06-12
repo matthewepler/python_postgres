@@ -7,7 +7,14 @@ TO-DO
 * [ ] Create a Move class and a corresponding many to many relationship with
   Game
 
-# Assignment #1:
+# Approach
+    The program should:
+        1.) import data from a file
+        2.) take a file argument
+        3.) give feedback on the success of the data import
+        4.) allow the user to make simple queries
+
+# Assignment #1 - Instructions
 
 *    ✓ Find a relatively simple dataset that you can work with and perform some sort of aggregation on, such as movie scores, movie reviews, sporting event stats, web server stats, etc.
 *    ✓ Pick a dataset with a lot of different distinct entities (different movies, candies, etc.).
