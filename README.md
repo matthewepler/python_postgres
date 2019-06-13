@@ -12,7 +12,7 @@ TO-DO
         1.) import data from a file
         2.) take a file argument
         3.) give feedback on the success of the data import
-        4.) allow the user to make simple queries
+        4.) allow the user to make simple queriesBase
 
 # Assignment #1 - Instructions
 
@@ -38,3 +38,11 @@ TO-DO
 5.  The abstractions do not detract from my understanding of how the database
     is working, but they do help me write code that is more pythonic and
     readable. This is passed on to the next developer.
+
+## WHY INCLUDE PANDAS?
+Panda's csv reader offers an easy interface to tell Python how to typecast incoming data (via the converters arg in read_csv()). This would allow the user to know that what is being passed from the main app into the schema has been correctly typed before it is entered in the database. This has two main benefits:  
+1.  Less data coercion required when querying the database
+2.  Provides an easy way to create a future feature that would allow the user to specify how data should be interepreted with a simple config file. Other features of pandas' read_csv func could also be added (setting a delimiter, etc.)
+
+## QUESTIONS
+- do we need to write tests for verifying that the database is working correctly, or does this fall under the "no need to test other people's code" category?
