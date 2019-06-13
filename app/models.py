@@ -30,13 +30,14 @@ class Game(Base):
         for column, datum in data.items():
             try:
                 datum = parser_defs[column](datum)
+            except KeyError:
+                raise KeyError(f'the column header "{column}" is not valid')
+            else:
                 if column == 'id':
                     setattr(self, 'source_id', datum)
                 else:
                     if hasattr(self, column):
                         setattr(self, column, datum)
-            except KeyError:
-                raise KeyError(f'the column header "{column}" is not valid')
 
 
 def parse_datetime(stamp: str):

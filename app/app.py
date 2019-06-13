@@ -19,11 +19,15 @@ def add_records_from_file(file_path: str):
 
     # DictReader parses each row into an OrderedDict
     # as keys and cell data as values
-    with open(file_path, newline='\n') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            game = Game(row)
-            session.add(game)
+    try:
+        with open(file_path, newline='\n') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                game = Game(row)
+                session.add(game)
+    except FileNotFoundError as fnf_error:
+        print(fnf_error)
+        raise
 
     # write changes to db
     session.commit()
@@ -41,9 +45,6 @@ if __name__ == "__main__":
         exit()
 
     data_file = sys.argv[1]
-    if not os.path.isfile(data_file):
-        print(f'{sys.argv[1]} is not a valid file')
-        exit()
 
     drop_table_if_exists(Game.__tablename__)
 
@@ -55,9 +56,6 @@ if __name__ == "__main__":
 
 
 # TODO:
-# [ ] add exception handling (Exception vs Error?)
-# [ ] add argument for data file path
-# [ ] add argument for dialect
 # [ ] break out parser docs into a separate file
 # [ ] make into executable package
 # [ ] add docstrings and comments where necessary

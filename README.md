@@ -45,4 +45,5 @@ Panda's csv reader offers an easy interface to tell Python how to typecast incom
 2.  Provides an easy way to create a future feature that would allow the user to specify how data should be interepreted with a simple config file. Other features of pandas' read_csv func could also be added (setting a delimiter, etc.)
 
 ## QUESTIONS
-- do we need to write tests for verifying that the database is working correctly, or does this fall under the "no need to test other people's code" category?
+- are there places where I am not handling exceptions or not handling them
+  correctly?
