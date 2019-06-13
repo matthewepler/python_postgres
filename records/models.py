@@ -28,7 +28,8 @@ class Game(Base):
     def __init__(self, data):
         for column, datum in data.items():
             try:
-                datum = parser_defs[column](datum)
+                # use the parser definitions to coerce/process data
+                datum = parser_defs[column](datum) or None
             except KeyError:
                 raise KeyError(f'the column header "{column}" is not valid')
             else:

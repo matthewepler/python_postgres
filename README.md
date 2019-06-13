@@ -1,31 +1,15 @@
 TO-DO
 -----
-* [ ] connect to database with sqlalchemy
-* [ ] create .env file or equivalent
-* [ ] test CRUD on new database
+* [ ] tests
 
-* [ ] Create a Move class and a corresponding many to many relationship with
-  Game
+## What I would do next...
+*  create .env file for db credentials
 
-# Approach
-    The program should:
-        1.) import data from a file
-        2.) take a file argument
-        3.) give feedback on the success of the data import
-        4.) allow the user to make simple queriesBase
 
-# Assignment #1 - Instructions
-
-*    ✓ Find a relatively simple dataset that you can work with and perform some sort of aggregation on, such as movie scores, movie reviews, sporting event stats, web server stats, etc.
-*    ✓ Pick a dataset with a lot of different distinct entities (different movies, candies, etc.).
-*    ✓ Pick a dataset with a standard numerical range as a rating or average of some field within the data.
-*    ✓ Pick a dataset not too small, not too large. (5k rows < num < 1m rows)
-*    ✓ Try to save the dataset to disk so you’re not requesting the data from an API or web site each time you run your script.
-*    Write a script to ingest that data from a file and save to a database. (SQLite, PostgreSQL, MySQL/MariaDB)
-*    ✓ Don’t worry about adding indexes at this point.
-*    Write a script to output basic stats about that data from the database to prove the visibility and accessibility of the data.
-*    Push your code to your personal GitLab repo. (call it “onboarding” or something)
-*    Set up linting and testing and get your build to be successful/green. (see https://gitlab.s.fpint.net/collections/bmt/blob/master/.gitlab-ci.yml and https://gitlab.s.fpint.net/collections/bmt/blob/master/prova.unit.yml )
+## QUESTIONS
+- are there places where I am not handling exceptions or not handling them
+  correctly?
+  
 
 # Dev Notes
 ## Why SQLAlchemy?
@@ -39,11 +23,15 @@ TO-DO
     is working, but they do help me write code that is more pythonic and
     readable. This is passed on to the next developer.
 
-## WHY INCLUDE PANDAS?
-Panda's csv reader offers an easy interface to tell Python how to typecast incoming data (via the converters arg in read_csv()). This would allow the user to know that what is being passed from the main app into the schema has been correctly typed before it is entered in the database. This has two main benefits:  
-1.  Less data coercion required when querying the database
-2.  Provides an easy way to create a future feature that would allow the user to specify how data should be interepreted with a simple config file. Other features of pandas' read_csv func could also be added (setting a delimiter, etc.)
 
-## QUESTIONS
-- are there places where I am not handling exceptions or not handling them
-  correctly?
+# Assignment #1 - Instructions
+*    ✓ Find a relatively simple dataset that you can work with and perform some sort of aggregation on, such as movie scores, movie reviews, sporting event stats, web server stats, etc.
+*    ✓ Pick a dataset with a lot of different distinct entities (different movies, candies, etc.).
+*    ✓ Pick a dataset with a standard numerical range as a rating or average of some field within the data.
+*    ✓ Pick a dataset not too small, not too large. (5k rows < num < 1m rows)
+*    ✓ Try to save the dataset to disk so you’re not requesting the data from an API or web site each time you run your script.
+*    Write a script to ingest that data from a file and save to a database. (SQLite, PostgreSQL, MySQL/MariaDB)
+*    ✓ Don’t worry about adding indexes at this point.
+*    Write a script to output basic stats about that data from the database to prove the visibility and accessibility of the data.
+*    Push your code to your personal GitLab repo. (call it “onboarding” or something)
+*    Set up linting and testing and get your build to be successful/green. (see https://gitlab.s.fpint.net/collections/bmt/blob/master/.gitlab-ci.yml and https://gitlab.s.fpint.net/collections/bmt/blob/master/prova.unit.yml )

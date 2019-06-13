@@ -5,15 +5,36 @@ import sys
 
 from database import Base, engine, Session
 from models import Game
+from sqlalchemy.engine.result import ResultProxy
 
 
-def drop_table_if_exists(table: str):
+def drop_table_if_exists(table: str) -> ResultProxy:
+    """
+        Deletes existing records in database
+
+        Params:
+            table: name of table to drop
+
+        Returns:
+           sqlalchemy.engine.result.ResultProxy object
+    """
+
     squery = f'DROP TABLE IF EXISTS {table};'
     result = engine.execute(squery)
     return result
 
 
-def add_records_from_file(file_path: str):
+def add_records_from_file(file_path: str) -> int:
+    """
+        Creates db entries for each row in a file
+
+        Params:
+            file_path: relative or absolute path to file
+
+        Returns
+            int: number of rows added to db
+    """
+
     # create new db session
     session = Session()
 
@@ -39,7 +60,6 @@ def add_records_from_file(file_path: str):
 
 
 if __name__ == "__main__":
-    # check for passed arguments
     if len(sys.argv) != 2:
         print('usage: app.py data_file_path')
         exit()
@@ -48,14 +68,13 @@ if __name__ == "__main__":
 
     drop_table_if_exists(Game.__tablename__)
 
-    # generate database schema(s)
+    # generate database schema(s) and create table
     Base.metadata.create_all(engine)
 
+    # open and parse file, add rows to db
     results = add_records_from_file(data_file)
     print(f'{results} records added')
 
 
 # TODO:
-# [ ] break out parser docs into a separate file
 # [ ] make into executable package
-# [ ] add docstrings and comments where necessary
