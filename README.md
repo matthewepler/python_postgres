@@ -1,6 +1,7 @@
 TO-DO
 -----
 * [ ] tests
+* use instrucitons here
 
 ## What I would do next...
 *  create .env file for db credentials
