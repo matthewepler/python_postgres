@@ -1,34 +1,63 @@
+from contextlib import redirect_stdout
 import csv
+import os
+import sys
 
 from database import Base, engine, Session
 from models import Game
 
 
-TMP_DATA_STR = '/Users/user19943211/dev/intern_assignment/data/games.csv'
-
-
-if __name__ == "__main__":
-    # check if records already exist and drop if they do
-    squery = 'DROP TABLE IF EXISTS games;'
+def drop_table_if_exists(table: str):
+    squery = f'DROP TABLE IF EXISTS {table};'
     result = engine.execute(squery)
+    return result
 
-    # generate database schema
-    Base.metadata.create_all(engine)
 
+def add_records_from_file(file_path: str):
     # create new db session
     session = Session()
 
-    with open(TMP_DATA_STR, newline='\n') as csvfile:
+    # DictReader parses each row into an OrderedDict
+    # as keys and cell data as values
+    with open(file_path, newline='\n') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             game = Game(row)
             session.add(game)
 
+    # write changes to db
     session.commit()
-    rows = session.query(Game).count()
-    print(f'{rows} records added')
+
+    rows_added = session.query(Game).count()
     session.close()
 
+    return rows_added
+
+
+if __name__ == "__main__":
+    # check for passed arguments
+    if len(sys.argv) != 2:
+        print('usage: app.py data_file_path')
+        exit()
+
+    data_file = sys.argv[1]
+    if not os.path.isfile(data_file):
+        print(f'{sys.argv[1]} is not a valid file')
+        exit()
+
+    drop_table_if_exists(Game.__tablename__)
+
+    # generate database schema(s)
+    Base.metadata.create_all(engine)
+
+    results = add_records_from_file(data_file)
+    print(f'{results} records added')
+
+
 # TODO:
+# [ ] add exception handling (Exception vs Error?)
 # [ ] add argument for data file path
 # [ ] add argument for dialect
+# [ ] break out parser docs into a separate file
+# [ ] make into executable package
+# [ ] add docstrings and comments where necessary
