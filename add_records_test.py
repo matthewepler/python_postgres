@@ -1,6 +1,7 @@
 import pytest
 
-from records import add
+import add_records
+
 
 TEST_FILE_CONTENT = """hello, world
 hello, there"""
@@ -14,5 +15,6 @@ def csv_fixture(tmpdir):
     yield tmp_file
 
 
-def exits_if_args_not_valid():
-    assert 1
+def test_takes_two_args():
+    with pytest.raises(ValueError):
+        add_records.main()

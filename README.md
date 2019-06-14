@@ -1,7 +1,9 @@
 TO-DO
 -----
+* [ ] put all Database stuff into a class
+* [x] implement session with context manager
 * [ ] tests
-* use instrucitons here
+* [ ] use instrucitons here
 
 ## What I would do next...
 *  create .env file for db credentials
@@ -24,6 +26,9 @@ TO-DO
     is working, but they do help me write code that is more pythonic and
     readable. This is passed on to the next developer.
 
+## Common Errors and Solutins
+*  `Relation "games" does not exist`
+    - the schema(s) were not created before you started working with them. Check to make sure the `metadata.create_all()` function has been called before doing any work with records 
 
 # Assignment #1 - Instructions
 *    ✓ Find a relatively simple dataset that you can work with and perform some sort of aggregation on, such as movie scores, movie reviews, sporting event stats, web server stats, etc.

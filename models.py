@@ -1,10 +1,10 @@
 from sqlalchemy import Column, String, Integer, Boolean, DateTime
 
-from database import Base
+from database import dal
 from parser import parser_defs
 
 
-class Game(Base):
+class Game(dal.Base):
     __tablename__ = 'games'
 
     id = Column(Integer, primary_key=True)
