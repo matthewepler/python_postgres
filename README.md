@@ -3,6 +3,9 @@ TO-DO
 * [ ] put all Database stuff into a class
 * [x] implement session with context manager
 * [ ] tests
+* [ ] set up CI/CD pipeline on Gitlab
+* [ ] bulk load data into database instead of one record at a time
+        - is sqlalchemy submiting all my INSERTs as a single transaction within a session?
 * [ ] use instrucitons here
 
 ## What I would do next...

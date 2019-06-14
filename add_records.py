@@ -1,7 +1,7 @@
 import csv
 import sys
 
-from database import dal, session_scope
+from database import engine, session_scope, Base
 from models import Game
 from sqlalchemy.engine.result import ResultProxy
 
@@ -18,7 +18,7 @@ def drop_table_if_exists(table: str) -> ResultProxy:
     """
 
     squery = f'DROP TABLE IF EXISTS {table};'
-    result = dal.engine.execute(squery)
+    result = engine.execute(squery)
     return result or None
 
 
@@ -56,8 +56,10 @@ def main(data_file: str):
     """
         XXX TODO ADD THIS
     """
-    dal.db_init('postgresql://mepler:Manthony213@localhost:5432/chess')
     drop_table_if_exists(Game.__tablename__)
+
+    Base.metadata.create_all(engine)
+
 
     # open and parse file, add rows to db
     results = add_records_from_file(data_file)

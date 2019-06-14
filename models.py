@@ -1,10 +1,10 @@
 from sqlalchemy import Column, String, Integer, Boolean, DateTime
 
-from database import dal
+from database import Base
 from parser import parser_defs
 
 
-class Game(dal.Base):
+class Game(Base):
     __tablename__ = 'games'
 
     id = Column(Integer, primary_key=True)
@@ -38,4 +38,3 @@ class Game(dal.Base):
                 else:
                     if hasattr(self, column):
                         setattr(self, column, datum)
-
