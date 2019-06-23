@@ -29,4 +29,5 @@ There are two test suites to run:
 *Example*: `$ dbtool query chessdb -q 'victory_status is "mate"`
 
 
-## TO-DO:
+#:# TO-DO:
+* [ ]  add type hints to add_records()
