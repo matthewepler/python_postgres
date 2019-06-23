@@ -31,3 +31,10 @@ There are two test suites to run:
 
 #:# TO-DO:
 * [ ]  add type hints to add_records()
+
+
+## Questions
+*  do I need `setup.py` and to install with `pip install -e`? See pytest docs
+*  where should `main` appear in the file structure and do I need a directory with the project name?
+*  do I understand imports correctly?
+*  how would I persist Resource objects in the real world
